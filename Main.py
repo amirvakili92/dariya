@@ -1,5 +1,5 @@
-from DataCleaner.py import DataLoader
-from DataLoader.py import DataLoader
+from DataCleaner import DataCleaner
+from DataLoader import DataLoader
 
 data_loader = DataLoader(r'C:\Users\amir\Downloads\amazon_products.csv')
 df = data_loader.get_data()
@@ -16,4 +16,5 @@ df = data_cleaner.apply_clean_date('date')
 df = data_cleaner.apply_convert_to_jalali('date')
 
 # Print cleaned dataframe
+
 df.info()
