@@ -19,14 +19,15 @@ df = data_cleaner.apply_convert_to_jalali('date')
 
 df.info()
 
-df['month_year'] = df['date'].str[0:7]
+df['month_year'] = df['date'].str[5:7]
 df['discount_percentage'] = ((df['actual_price'] - df['discount_price']) / df['actual_price']) * 100
-df['monthly_sales'] = df['actual_price'] * df['no_of_ratings']
+# df['monthly_sales'] = df['actual_price'] * df['no_of_ratings']
 
 monthly_summary = df.groupby('month_year').agg(
-    total_sales=('monthly_sales', 'sum'),  average_discount_percentage=('discount_percentage', 'mean') ).reset_index()
+    total_sales=('actual_price', 'sum'),  average_discount_percentage=('discount_percentage', 'mean') ).reset_index()
 
 monthly_summary.style.format({
-    'total_sales': '{:,.3f}',
-    'average_discount_percentage': '{:,.3f}'
+    'total_sales': '{:,.1f}',
+    'average_discount_percentage': '{:,.1f}'
 })
+
